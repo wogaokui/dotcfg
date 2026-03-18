@@ -1,0 +1,16 @@
+[user]
+	email = shengwugao@hotmail.com
+	name = gaosw
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	cm = commit
+	st = status
+	br = branch
+[pull]
+	rebase = true
+[core]
+	editor = vim
+[includeIf "hasconfig:remote.*.url:https://gitlab-adc.xiaopeng.link/**"]
+	path = ~/.gitconfig_work

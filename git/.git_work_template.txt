@@ -1,0 +1,3 @@
+[xminer]
+
+	Signed-off-by: Gao Shengwu <gaosw@xiaopeng.com>

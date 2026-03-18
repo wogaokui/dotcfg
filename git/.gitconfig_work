@@ -1,0 +1,5 @@
+[user]
+	email = gaosw@xiaopeng.com
+	name = gaosw
+[commit]
+	template = ~/.git_work_template.txt
