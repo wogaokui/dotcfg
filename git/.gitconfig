@@ -12,5 +12,11 @@
 	rebase = true
 [core]
 	editor = vim
-[includeIf "hasconfig:remote.*.url:https://gitlab-adc.xiaopeng.link/**"]
+[includeIf "gitdir:~/adc/"]
 	path = ~/.gitconfig_work
+[includeIf "gitdir:~/robot/"]
+	path = ~/.gitconfig_work
+[includeIf "gitdir:/sandbox/"]
+	path = ~/.gitconfig_work
+[credential]
+	helper = "!f() { /home/user/.vscode-server/bin/f6cfa2ea2403534de03f069bdf160d06451ed282/node /tmp/vscode-remote-containers-2aba2535-321a-44df-8eb3-50e45bd1ca9c.js git-credential-helper $*; }; f"
