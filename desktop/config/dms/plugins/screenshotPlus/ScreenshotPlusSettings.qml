@@ -1,0 +1,184 @@
+import QtQuick
+import Quickshell
+import qs.Common
+import qs.Widgets
+import qs.Modules.Plugins
+import "lib/Config.js" as Config
+import "lib/Ocr.js" as Ocr
+import "lib/Tools.js" as Tools
+
+// DMS Settings -> Plugins -> Screenshot+. Defaults come from lib/Config.js.
+PluginSettings {
+    id: root
+    pluginId: "screenshotPlus"
+
+    component SectionTitle: StyledText {
+        width: parent.width
+        font.pixelSize: Theme.fontSizeLarge
+        font.weight: Font.Bold
+        color: Theme.surfaceText
+    }
+
+    SectionTitle { text: I18n.trFor("screenshotPlus", "Toolbar") }
+
+    Column {
+        width: parent.width
+        spacing: Theme.spacingM
+
+        Repeater {
+            model: Tools.TOOLS
+            delegate: ToggleSetting {
+                required property var modelData
+                settingKey: Config.toolEnabledKey(modelData.id)
+                label: I18n.trFor("screenshotPlus", modelData.label) + " (" + modelData.key + ")"
+                defaultValue: true
+            }
+        }
+    }
+
+    SectionTitle { text: I18n.trFor("screenshotPlus", "Default style"); topPadding: Theme.spacingM }
+
+    ColorSetting {
+        settingKey: "defaultColor"
+        label: I18n.trFor("screenshotPlus", "Color")
+        defaultValue: Config.DEFAULTS.defaultColor
+    }
+
+    SelectionSetting {
+        settingKey: "defaultWidthPreset"
+        label: I18n.trFor("screenshotPlus", "Size")
+        options: [
+            { "label": "S", "value": "S" },
+            { "label": "M", "value": "M" },
+            { "label": "L", "value": "L" },
+            { "label": "XL", "value": "XL" }
+        ]
+        defaultValue: Config.DEFAULTS.defaultWidthPreset
+    }
+
+    SectionTitle { text: I18n.trFor("screenshotPlus", "Output"); topPadding: Theme.spacingM }
+
+    ToggleSetting {
+        settingKey: "copyToClipboard"
+        label: I18n.trFor("screenshotPlus", "Copy to clipboard")
+        defaultValue: Config.DEFAULTS.copyToClipboard
+    }
+
+    ToggleSetting {
+        settingKey: "saveToFile"
+        label: I18n.trFor("screenshotPlus", "Save to file")
+        defaultValue: Config.DEFAULTS.saveToFile
+    }
+
+    ToggleSetting {
+        settingKey: "pinToScreen"
+        label: I18n.trFor("screenshotPlus", "Pin to screen")
+        defaultValue: Config.DEFAULTS.pinToScreen
+    }
+
+    StringSetting {
+        settingKey: "saveDirectory"
+        label: I18n.trFor("screenshotPlus", "Save directory")
+        placeholder: "~/Pictures/Screenshots"
+        defaultValue: Config.DEFAULTS.saveDirectory
+    }
+
+    StringSetting {
+        settingKey: "fileNamePattern"
+        label: I18n.trFor("screenshotPlus", "File name")
+        description: I18n.trFor("screenshotPlus", "date(1) format without the extension, e.g. screenshot_%Y-%m-%d_%H-%M-%S")
+        placeholder: "screenshot-%Y%m%d-%H%M%S"
+        defaultValue: Config.DEFAULTS.fileNamePattern
+    }
+
+    ToggleSetting {
+        settingKey: "notify"
+        label: I18n.trFor("screenshotPlus", "Notify when done")
+        defaultValue: Config.DEFAULTS.notify
+    }
+
+    // A direct child of PluginSettings: nested settings never receive the
+    // pluginService and would show their defaults.
+    SelectionSetting {
+        settingKey: "backend"
+        label: I18n.trFor("screenshotPlus", "Backend")
+        topPadding: Theme.spacingM
+        description: I18n.trFor("screenshotPlus", "cli grabs the screen with dms screenshot and works with any Quickshell. screencopy shows the frame about three times sooner but crashes current stock Quickshell when the overlay closes (quickshell#1094, fix pending); use it only with a Quickshell that includes the fix.")
+        options: [
+            { "label": "cli", "value": "cli" },
+            { "label": "screencopy", "value": "screencopy" }
+        ]
+        defaultValue: Config.DEFAULTS.backend
+    }
+
+    SectionTitle { text: I18n.trFor("screenshotPlus", "Text recognition"); topPadding: Theme.spacingM }
+
+    StringSetting {
+        id: oarPathSetting
+        settingKey: "oarPath"
+        label: I18n.trFor("screenshotPlus", "oar path")
+        description: I18n.trFor("screenshotPlus", "Text inside the selection is recognized by oar-ocr; install it with cargo install oar-ocr-cli. Double-click text to select it. Leave empty to turn text recognition off.")
+        placeholder: "~/.cargo/bin/oar"
+        defaultValue: Config.DEFAULTS.oarPath
+    }
+
+    StringSetting {
+        id: oarArgsSetting
+        settingKey: "oarArgs"
+        label: I18n.trFor("screenshotPlus", "oar arguments")
+        description: I18n.trFor("screenshotPlus", "Added after oar ocr. --size small is more accurate on some text and reads Japanese, but takes about twice as long.")
+        placeholder: Config.DEFAULTS.oarArgs
+        defaultValue: Config.DEFAULTS.oarArgs
+    }
+
+    Row {
+        width: parent.width
+        spacing: Theme.spacingM
+
+        DankButton {
+            id: testButton
+            text: I18n.trFor("screenshotPlus", "Test")
+            iconName: "play_arrow"
+            onClicked: root.testOcr()
+        }
+
+        StyledText {
+            id: testResult
+            property bool failed: false
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width - testButton.width - parent.spacing
+            font.pixelSize: Theme.fontSizeSmall
+            color: failed ? Theme.error : Theme.surfaceVariantText
+            wrapMode: Text.WordWrap
+        }
+    }
+
+    Component {
+        id: ocrRunner
+        OcrRunner {}
+    }
+
+    // Runs oar on the README's screenshot and says whether that worked.
+    function testOcr() {
+        oarPathSetting.commit()
+        oarArgsSetting.commit()
+        if (oarPathSetting.value.trim() === "") {
+            testResult.failed = true
+            testResult.text = I18n.trFor("screenshotPlus", "Enter the path of oar first")
+            return
+        }
+        testResult.failed = false
+        testResult.text = I18n.trFor("screenshotPlus", "Running…")
+        const proc = ocrRunner.createObject(root, {
+            "oar": Ocr.oarCommand(oarPathSetting.value, oarArgsSetting.value, Quickshell.env("HOME")),
+            "picture": Qt.resolvedUrl("screenshots/screenshot.png").toString().replace(/^file:\/\//, "")
+        })
+        proc.recognized.connect(error => {
+            proc.destroy()
+            testResult.failed = error !== ""
+            testResult.text = error === "" ? I18n.trFor("screenshotPlus", "Succeeded")
+                                           : I18n.trFor("screenshotPlus", "Failed: %1").arg(error)
+        })
+        proc.running = true
+    }
+}

@@ -1,0 +1,197 @@
+{
+  "Toolbar": {
+    "Toolbar": "工具栏"
+  },
+  "Default style": {
+    "Default style": "默认样式"
+  },
+  "Color": {
+    "Color": "颜色"
+  },
+  "Size": {
+    "Size": "粗细"
+  },
+  "Output": {
+    "Output": "输出"
+  },
+  "Copy to clipboard": {
+    "Copy to clipboard": "复制到剪贴板"
+  },
+  "Save to file": {
+    "Save to file": "保存到文件"
+  },
+  "Pin to screen": {
+    "Pin to screen": "固定到屏幕"
+  },
+  "Save directory": {
+    "Save directory": "保存目录"
+  },
+  "File name": {
+    "File name": "文件名"
+  },
+  "date(1) format without the extension, e.g. screenshot_%Y-%m-%d_%H-%M-%S": {
+    "date(1) format without the extension, e.g. screenshot_%Y-%m-%d_%H-%M-%S": "date(1) 格式，不含扩展名，例如 screenshot_%Y-%m-%d_%H-%M-%S"
+  },
+  "Notify when done": {
+    "Notify when done": "完成后通知"
+  },
+  "Backend": {
+    "Backend": "后端"
+  },
+  "Select": {
+    "Select": "选择"
+  },
+  "Rectangle": {
+    "Rectangle": "矩形"
+  },
+  "Ellipse": {
+    "Ellipse": "椭圆"
+  },
+  "Line": {
+    "Line": "直线"
+  },
+  "Arrow": {
+    "Arrow": "箭头"
+  },
+  "Pen": {
+    "Pen": "画笔"
+  },
+  "Highlighter": {
+    "Highlighter": "荧光笔"
+  },
+  "Text": {
+    "Text": "文字"
+  },
+  "Mosaic": {
+    "Mosaic": "马赛克"
+  },
+  "Number": {
+    "Number": "序号"
+  },
+  "Color / size": {
+    "Color / size": "颜色 / 粗细"
+  },
+  "Undo (Ctrl+Z)": {
+    "Undo (Ctrl+Z)": "撤销 (Ctrl+Z)"
+  },
+  "Redo (Ctrl+Shift+Z)": {
+    "Redo (Ctrl+Shift+Z)": "重做 (Ctrl+Shift+Z)"
+  },
+  "Save to file (Ctrl+S)": {
+    "Save to file (Ctrl+S)": "保存到文件 (Ctrl+S)"
+  },
+  "Copy to clipboard (Enter / Space)": {
+    "Copy to clipboard (Enter / Space)": "复制到剪贴板 (Enter / Space)"
+  },
+  "Cancel (Esc)": {
+    "Cancel (Esc)": "取消 (Esc)"
+  },
+  "Pin to screen (Ctrl+P)": {
+    "Pin to screen (Ctrl+P)": "固定到屏幕 (Ctrl+P)"
+  },
+  "Close (Esc)": {
+    "Close (Esc)": "关闭 (Esc)"
+  },
+  "Custom color": {
+    "Custom color": "自定义颜色"
+  },
+  "Drag to select an area  ·  Esc to cancel": {
+    "Drag to select an area  ·  Esc to cancel": "拖动选择区域  ·  Esc 取消"
+  },
+  "Annotation color": {
+    "Annotation color": "标注颜色"
+  },
+  "Saved and copied to clipboard": {
+    "Saved and copied to clipboard": "已保存并复制到剪贴板"
+  },
+  "Saved": {
+    "Saved": "已保存"
+  },
+  "Copied to clipboard": {
+    "Copied to clipboard": "已复制到剪贴板"
+  },
+  "Could not save to": {
+    "Could not save to": "无法保存到"
+  },
+  "cli grabs the screen with dms screenshot and works with any Quickshell. screencopy shows the frame about three times sooner but crashes current stock Quickshell when the overlay closes (quickshell#1094, fix pending); use it only with a Quickshell that includes the fix.": {
+    "cli grabs the screen with dms screenshot and works with any Quickshell. screencopy shows the frame about three times sooner but crashes current stock Quickshell when the overlay closes (quickshell#1094, fix pending); use it only with a Quickshell that includes the fix.": "cli 用 dms screenshot 抓帧，任何 Quickshell 都可用。screencopy 出帧快约三倍，但当前原版 Quickshell 会在关闭 overlay 时崩掉整个 shell（quickshell#1094，修复尚未合入），只有 Quickshell 已包含修复时才选它。"
+  },
+  "Clear all annotations": {
+    "Clear all annotations": "清除全部标注"
+  },
+  "F  whole screen  ·  < >  previous regions": {
+    "F  whole screen  ·  < >  previous regions": "F 整个屏幕  ·  < > 历史区域"
+  },
+  "F  whole screen": {
+    "F  whole screen": "F 整个屏幕"
+  },
+  "Text recognition": {
+    "Text recognition": "文字识别"
+  },
+  "Test": {
+    "Test": "测试"
+  },
+  "Running…": {
+    "Running…": "运行中…"
+  },
+  "Failed: %1": {
+    "Failed: %1": "失败：%1"
+  },
+  "Recognizing text…": {
+    "Recognizing text…": "正在识别文字…"
+  },
+  "No text recognized": {
+    "No text recognized": "未识别到文字"
+  },
+  "No text here": {
+    "No text here": "这里没有识别到文字"
+  },
+  "Copied %1 characters": {
+    "Copied %1 characters": "已复制 %1 个字"
+  },
+  "No text selected": {
+    "No text selected": "没有选中文字"
+  },
+  "Text recognition failed: %1": {
+    "Text recognition failed: %1": "文字识别失败：%1"
+  },
+  "could not write %1": {
+    "could not write %1": "无法写入 %1"
+  },
+  "could not grab the selection": {
+    "could not grab the selection": "无法截取选区"
+  },
+  "timed out": {
+    "timed out": "超时"
+  },
+  "exit code %1": {
+    "exit code %1": "退出码 %1"
+  },
+  "Copy text (Ctrl+C)": {
+    "Copy text (Ctrl+C)": "复制文字 (Ctrl+C)"
+  },
+  "oar path": {
+    "oar path": "oar 路径"
+  },
+  "Text inside the selection is recognized by oar-ocr; install it with cargo install oar-ocr-cli. Double-click text to select it. Leave empty to turn text recognition off.": {
+    "Text inside the selection is recognized by oar-ocr; install it with cargo install oar-ocr-cli. Double-click text to select it. Leave empty to turn text recognition off.": "选区里的文字由 oar-ocr 识别，用 cargo install oar-ocr-cli 安装。双击文字即可选中。留空则关闭文字识别。"
+  },
+  "oar arguments": {
+    "oar arguments": "oar 参数"
+  },
+  "Added after oar ocr. --size small is more accurate on some text and reads Japanese, but takes about twice as long.": {
+    "Added after oar ocr. --size small is more accurate on some text and reads Japanese, but takes about twice as long.": "加在 oar ocr 之后。--size small 对部分文字更准，也能识别日文，但耗时约为两倍。"
+  },
+  "Enter the path of oar first": {
+    "Enter the path of oar first": "请先填写 oar 路径"
+  },
+  "could not read oar's output": {
+    "could not read oar's output": "无法解析 oar 的输出"
+  },
+  "Succeeded": {
+    "Succeeded": "成功"
+  },
+  "Recognize text (O)": {
+    "Recognize text (O)": "识别文字 (O)"
+  }
+}

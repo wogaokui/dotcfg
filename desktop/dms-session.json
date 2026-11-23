@@ -1,0 +1,12 @@
+{
+  "configVersion": 7,
+  "isLightMode": true,
+  "materialWallpapers": {
+    "": {
+      "shared": {
+        "preset": "bloom",
+        "seed": "#a6c8ff"
+      }
+    }
+  }
+}
